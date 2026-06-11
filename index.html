@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Monthsary Luv</title>
+
+<style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    width: 100%;
+    /* Elegant, deep romantic red gradient background */
+    background: radial-gradient(circle, #8b0000 0%, #4a0000 100%);
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Corner Flower Decorations */
+  .rose-decor {
+    position: absolute;
+    font-size: 5rem; /* Large on desktop screens */
+    opacity: 0.85;
+    z-index: 5;
+    user-select: none;
+    pointer-events: none;
+    transition: font-size 0.3s ease;
+  }
+
+  /* Top Left Roses */
+  .top-left {
+    top: 15px;
+    left: 15px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* Bottom Right Roses */
+  .bottom-right {
+    bottom: 15px;
+    right: 15px;
+    text-shadow: -2px -2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* Centered content styles */
+  .container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+    /* Shipped everything in the center slightly upwards */
+    transform: translateY(-40px); 
+  }
+
+  /* 3 Flowers Styling & Animation */
+  .text-flowers {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    letter-spacing: 8px;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: flowerSway 3.5s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+  }
+
+  @keyframes flowerSway {
+    0% { transform: rotate(-6deg) scale(1); }
+    100% { transform: rotate(6deg) scale(1.03); }
+  }
+
+  /* Text Animation Styles */
+  h1 {
+    font-size: 3.5em; /* Large on desktop screens */
+    margin-bottom: 5px; /* Reduced gap to accommodate the h3 */
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.7);
+    animation: textPulse 3s ease-in-out infinite alternate;
+    line-height: 1.2;
+  }
+
+  /* New Subtitle Styles */
+  h3 {
+    font-size: 1.5em;
+    font-weight: normal;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.6);
+    animation: subPulse 3s ease-in-out infinite alternate;
+  }
+
+  /* Text Animation Keyframes */
+  @keyframes textPulse {
+    0% {
+      transform: scale(1);
+      text-shadow: 0 0 10px rgba(255, 105, 180, 0.5), 2px 4px 10px rgba(0, 0, 0, 0.7);
+    }
+    100% {
+      transform: scale(1.05);
+      text-shadow: 0 0 25px rgba(255, 192, 203, 0.9), 0 0 40px rgba(255, 20, 147, 0.6), 2px 4px 10px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  @keyframes subPulse {
+    0% {
+      text-shadow: 0 0 5px rgba(255, 192, 203, 0.3), 1px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+    100% {
+      text-shadow: 0 0 15px rgba(255, 192, 203, 0.8), 1px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  /* Main Shaking Heart in the Center */
+  .center-heart {
+    font-size: 5rem;
+    margin-bottom: 10px;
+    display: inline-block;
+    user-select: none;
+    pointer-events: none;
+    animation: heartBeatShake 1.2s infinite;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  @keyframes heartBeatShake {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.2) rotate(-5deg); }
+    30% { transform: scale(1) rotate(5deg); }
+    45% { transform: scale(1.1) rotate(-3deg); }
+    60% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1); }
+  }
+
+  /* Class to fade out the center heart when it explodes */
+  .heart-disappear {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+  }
+
+  /* Button styles (Untouched) */
+  button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #ff3366; 
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  button:hover {
+    background-color: #ff5588;
+    transform: translateY(-5px) scale(1.1); 
+    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.6); 
+  }
+
+  /* Falling background objects styles */
+  .falling {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+    font-size: 24px;
+    user-select: none;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    z-index: 1;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Exploding Heart Particle Styles */
+  .burst-heart {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 3.5rem; 
+    user-select: none;
+    animation: explodeParticles 2.5s cubic-bezier(0.1, 0.5, 0.2, 1) forwards;
+  }
+
+  @keyframes explodeParticles {
+    0% {
+      transform: translate(-50%, -50%) scale(0.1);
+      opacity: 1;
+    }
+    15% { opacity: 1; }
+    100% {
+      transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(2.2) rotate(var(--r));
+      opacity: 0;
+    }
+  }
+
+  /* ----------------------------------------------------
+     RESPONSIVE MEDIA QUERIES (MOBILE OPTIMIZATION)
+     ---------------------------------------------------- */
+  
+  /* Tablets and small screens (under 768px wide) */
+  @media (max-width: 768px) {
+    h1 { font-size: 2.8em; }
+    h3 { font-size: 1.3em; }
+    .center-heart { font-size: 4rem; }
+    .rose-decor { font-size: 3.5rem; }
+    .text-flowers { font-size: 1.8rem; }
+    .burst-heart { font-size: 2.5rem; }
+  }
+
+  /* Smartphones / Mobile Phones (under 480px wide) */
+  @media (max-width: 480px) {
+    .container { transform: translateY(-30px); } 
+    h1 { font-size: 2.2em; }
+    h3 { font-size: 1.1em; margin-bottom: 15px; }
+    .center-heart { font-size: 3.5rem; }
+    .rose-decor { font-size: 2.5rem; top: 10px; left: 10px; bottom: 10px; right: 10px; }
+    .text-flowers { font-size: 1.5rem; margin-bottom: 5px; }
+    button { font-size: 1em; padding: 12px 24px; margin-top: 15px; }
+    .burst-heart { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="rose-decor top-left">🌹🌹</div>
+<div class="rose-decor bottom-right">🌹🌹</div>
+
+<div class="container">
+  <div class="center-heart" id="mainHeart">💖</div>
+  
+  <div class="text-flowers">🌸🌷🌹</div>
+  
+  <h1>Happy Monthsary Luv</h1>
+  
+  <h3>Len len Odto / From: Jaymark Matas</h3>
+  
+  <button id="pislitaBtn" onclick="window.location.href='second.html'">Pislita ni Luv</button>
+</div>
+
+<script>
+  const emojis = ['🌸', '🌺', '💖', '💐', '🌹', '💕', '🌷', '💘', '💝', '🌻'];
+  const blastHearts = ['❤️', '💖', '💝', '💕', '💘', '💗', '💓', '✨'];
+
+  // 1. Background falling items loop
+  function createFalling() {
+    const fallingDiv = document.createElement('div');
+    fallingDiv.className = 'falling';
+    const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+    fallingDiv.innerHTML = emoji;
+    fallingDiv.style.left = Math.random() * 100 + 'vw';
+    const size = Math.random() * 15 + 15;
+    fallingDiv.style.fontSize = size + 'px';
+    const duration = Math.random() * 5 + 5; 
+    fallingDiv.style.animationDuration = duration + 's';
+    document.body.appendChild(fallingDiv);
+    setTimeout(() => { fallingDiv.remove(); }, duration * 1000);
+  }
+  setInterval(createFalling, 350);
+
+  // 2. AUTOMATIC SLOW-MOTION SHOCKWAVE EXPLOSION ON SITE LOAD
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const mainHeart = document.getElementById('mainHeart');
+      mainHeart.classList.add('heart-disappear');
+
+      const isMobile = window.innerWidth <= 480;
+      const verticalShift = isMobile ? -30 : -40;
+      
+      const originX = window.innerWidth / 2;
+      const originY = (window.innerHeight / 2) + verticalShift;
+
+      const particleCount = isMobile ? 45 : 70;
+      const maxDistance = isMobile ? 250 : 500;
+
+      for (let i = 0; i < particleCount; i++) {
+        const p = document.createElement('div');
+        p.className = 'burst-heart';
+        p.innerHTML = blastHearts[Math.floor(Math.random() * blastHearts.length)];
+        
+        p.style.left = originX + 'px';
+        p.style.top = originY + 'px';
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * maxDistance + 80; 
+        const xTranslate = Math.cos(angle) * distance;
+        const yTranslate = Math.sin(angle) * distance;
+        const randomRotation = Math.random() * 720; 
+
+        p.style.setProperty('--x', `${xTranslate}px`);
+        p.style.setProperty('--y', `${yTranslate}px`);
+        p.style.setProperty('--r', `${randomRotation}deg`);
+
+        document.body.appendChild(p);
+        setTimeout(() => { p.remove(); }, 2500);
+      }
+    }, 300);
+  });
+</script>
+
+</body>
+</html>
