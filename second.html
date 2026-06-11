@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Monthsary Luv - Page 2</title>
+<style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    width: 100%;
+    background: radial-gradient(circle, #8b0000 0%, #4a0000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* --- SCATTERED PHOTO BACKGROUND --- */
+  .photo-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .scattered-photo {
+    position: absolute;
+    width: 160px;
+    height: 200px;
+    border: 6px solid white;
+    border-bottom: 24px solid white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    background-color: #eee;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Exact positions on screen */
+  .p1 { top: 8%; left: 6%; transform: rotate(-12deg); }
+  .p2 { top: 4%; left: 42%; transform: rotate(4deg); }
+  .p3 { top: 12%; right: 6%; transform: rotate(-6deg); }
+  .p4 { top: 42%; left: 3%; transform: rotate(14deg); }
+  .p5 { bottom: 6%; left: 10%; transform: rotate(-8deg); }
+  .p6 { bottom: 4%; left: 45%; transform: rotate(7deg); }
+  .p7 { bottom: 12%; right: 5%; transform: rotate(-15deg); }
+  .p8 { top: 45%; right: 4%; transform: rotate(10deg); }
+
+  /* Responsive sizes for mobile devices */
+  @media (max-width: 768px) {
+    .scattered-photo {
+      width: 110px;
+      height: 140px;
+      border-width: 4px;
+      border-bottom-width: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .scattered-photo {
+      width: 85px;
+      height: 110px;
+      border-width: 3px;
+      border-bottom-width: 12px;
+    }
+  }
+
+  /* Two Dark Red Curtain Boxes */
+  .upper-left,
+  .right-square {
+    width: 50vw;
+    height: 100vh;
+    background-color: #2b0000;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+  }
+
+  .upper-left {
+    left: 0;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .right-square {
+    right: 0;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Animation Triggers */
+  .hide-left {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .hide-right {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  /* Main Container Element */
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    padding: 20px;
+  }
+
+  /* Central Message Box (Mobile Responsive Updates) */
+  .center-square {
+    width: 100%;
+    max-width: 360px;
+    max-height: 75vh;
+    background: radial-gradient(circle, #ff2e63 0%, #b80d32 100%);
+    border: 4px solid #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    padding: 24px 20px;
+    text-align: center;
+    animation: zoomInCenter 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+  }
+
+  @keyframes zoomInCenter {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .center-square::before {
+    content: '💝';
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+    display: block;
+    flex-shrink: 0;
+    animation: pulseHeart 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulseHeart {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+
+  /* Text Scroll Container for Long Messages on small displays */
+  .text-container {
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 10px;
+    padding-right: 4px;
+  }
+
+  /* Styling for clean native scrolling view */
+  .text-container::-webkit-scrollbar {
+    width: 4px;
+  }
+  .text-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+  }
+
+  .hide-center {
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+    pointer-events: none;
+  }
+
+  /* Button Design */
+  #animateBtn {
+    padding: 14px 28px;
+    margin-top: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #ff3366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  #animateBtn:hover {
+    background-color: #ff5588;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.5);
+  }
+
+  /* Drifting emojis */
+  .falling {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    opacity: 0.25;
+    font-size: 24px;
+    user-select: none;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    z-index: 4;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .center-square { 
+      max-width: 290px;
+      padding: 16px 14px;
+    }
+    .center-square::before { font-size: 2.8rem; }
+    #animateBtn { font-size: 1em; padding: 12px 22px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="photo-background">
+    <img src="luv/1.jpg" class="scattered-photo p1">
+    <img src="2.png" class="scattered-photo p2">
+    <img src="3.jpg" class="scattered-photo p3">
+    <img src="4.png" class="scattered-photo p4">
+    <img src="5.png" class="scattered-photo p5">
+    <img src="6.png" class="scattered-photo p6">
+    <img src="7.png" class="scattered-photo p7">
+    <img src="3.jpg" class="scattered-photo p8">
+  </div>
+
+  <div class="upper-left" id="leftBox"></div>
+  <div class="right-square" id="rightBox"></div>
+
+  <div class="container">
+    <div class="center-square" id="mainBox">
+      <h2 style="font-size: 1.3em; text-shadow: 0 2px 4px rgba(0,0,0,0.4); flex-shrink: 0;">For You, Luv</h2>
+      
+      <div class="text-container">
+        <p style="font-size: 0.9em; line-height: 1.4; opacity: 0.95; text-align: center;">
+          Happy Monthsary Luv i pray for you always keep it up sa work po im here always to support you luv diko mo sawa po im soo happy for 1 year and 1 month luv we live together sorry kaayo sa mga wording sa akong pag ka seloso nasubraan pero luv im here po kanunay ko naa sa imong kilid bisan sa mga challenges nga ma abut atung atubangon sorry kaayo luv kung kani rah akong ma effort for now wala pay work ey hehe pero btaw iloveyou always😘 keep safe always ilove you more and more mwapsss😘🫂
+        </p>
+      </div>
+    </div>
+
+    <button id="animateBtn">Animate Squares Out</button>
+  </div>
+
+  <script>
+    const leftSquare = document.getElementById('leftBox');
+    const rightSquare = document.getElementById('rightBox');
+    const centerSquare = document.getElementById('mainBox');
+    const button = document.getElementById('animateBtn');
+
+    button.addEventListener('click', () => {
+      leftSquare.classList.add('hide-left');
+      rightSquare.classList.add('hide-right');
+      centerSquare.classList.add('hide-center');
+      button.style.display = 'none';
+    });
+
+    // Floating background emojis
+    const backgroundEmojis = ['💖', '💕', '❤️', '🌸', '🌹'];
+
+    function createDrift() {
+      const driftItem = document.createElement('div');
+      driftItem.className = 'falling';
+      driftItem.textContent = backgroundEmojis[Math.floor(Math.random() * backgroundEmojis.length)];
+      driftItem.style.left = Math.random() * 100 + 'vw';
+
+      const duration = Math.random() * 6 + 6;
+      driftItem.style.animationDuration = duration + 's';
+
+      document.body.appendChild(driftItem);
+      setTimeout(() => {
+        driftItem.remove();
+      }, duration * 1000);
+    }
+
+    setInterval(createDrift, 400);
+  </script>
+
+</body>
+</html>
